@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental Paper Blueprints & Research Gap Analysis - Rohit Jha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+            <style>
+        :root {
+            --text-main: #000000;
+            --text-muted: #555555;
+            --border-color: #888888;
+            --header-bg: #dbeafe; /* Light crisp blue for headers */
+            --header-text: #1e3a8a; /* Deep navy blue */
+            --accent-blue: #1e3a8a;
+            --row-alt: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cambria', 'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 40px;
+            font-size: 11pt;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 22pt;
+            font-weight: bold;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 12pt;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* 2-Column Table for Student Info */
+        .student-info-table-container {
+            margin: 0 auto 40px auto;
+            width: 100%;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-table td {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .info-label {
+            font-weight: bold;
+            width: 25%;
+            color: var(--header-text);
+            background-color: #f1f5f9;
+        }
+
+        .info-value {
+            width: 75%;
+        }
+
+        section {
+            margin-top: 40px;
+        }
+
+        h2 {
+            font-size: 14pt;
+            color: var(--header-text);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--header-text);
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Main Data Tables */
+        .table-container {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--header-bg);
+            padding: 12px;
+            font-weight: bold;
+            border: 1px solid var(--border-color);
+            color: var(--header-text);
+            font-size: 11pt;
+            text-align: center;
+        }
+        
+        /* Apply text alignment explicitly to header cells */
+        thead tr th:nth-child(1) { text-align: left; }
+        thead tr th:nth-child(2) { text-align: left; }
+        thead tr th:nth-child(3) { text-align: left; }
+        thead tr th:nth-child(4) { text-align: center; }
+        thead tr th:nth-child(5) { text-align: left; }
+
+        td {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        /* Zebra striping for readability */
+        tbody tr:nth-child(even) {
+            background-color: var(--row-alt);
+        }
+
+        /* Specific Table Highlights */
+        .col-my-project {
+            background-color: #f0fdf4; /* very light green for project column */
+            font-weight: bold;
+        }
+        
+        .col-gap {
+            font-style: italic;
+            color: #7f1d1d; /* Subtle dark red for gaps */
+        }
+
+        /* Custom Checkboxes (Academic Style) */
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .checkbox-container {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 11pt;
+            font-weight: normal;
+            color: var(--text-main);
+        }
+
+        .checkbox-container input {
+            margin-right: 5px;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .checkmark {
+            display: none;
+        }
+
+        .instructions {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--header-text);
+        }
+        
+        .instructions p {
+            margin-bottom: 5px;
+        }
+        
+        .instructions p strong {
+            color: var(--header-text);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .btn-primary, .btn-secondary {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 10pt;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .btn-primary { background-color: #1e3a8a; color: white; }
+        .btn-primary:hover { background-color: #1e40af; transform: translateY(-2px); }
+        .btn-secondary { background-color: #ffffff; color: #1e3a8a; border: 1px solid #1e3a8a; }
+        .btn-secondary:hover { background-color: #f1f5f9; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <div class="action-buttons no-print" contenteditable="false">
+        <button onclick="window.print()" class="btn-primary" contenteditable="false">📥 Save PDF</button>
+        <button onclick="saveHtml()" class="btn-primary" style="background-color: #047857;" contenteditable="false">💾 Save HTML</button>
+        <button onclick="toggleEdit()" class="btn-secondary" id="editBtn" contenteditable="false">✏️ Enable Editing</button>
+    </div>
+    
+
+    <div class="container">
+        <header>
+            <h1>EXPERIMENTAL PAPER BLUEPRINTS</h1>
+            <p class="subtitle">Comprehensive Empirical Planning Worksheets for Base Papers Aligned with Coursework Specification STW7072CEM</p>
+            
+                        <div class="student-info-table-container">
+                <table class="info-table">
+                    <tbody>
+                        <tr>
+                            <td class="info-label">Student (Name &amp; ID):</td>
+                            <td class="info-value">Rohit Jha | Coventry ID: 11782276 | Softwarica ID: 210178</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Programme &amp; Institution:</td>
+                            <td class="info-value">MSc Data Science and Computational Intelligence | Softwarica College / Coventry University</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Module &amp; Assignment:</td>
+                            <td class="info-value">STW7072CEM / ST7072CEM Machine Learning &mdash; Coursework CW (Regular)</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Coursework Research Project:</td>
+                            <td class="info-value" style="font-weight: bold;">National-Scale Dynamic Flash Flood Susceptibility Analysis in Nepal: A Spatially-Robust Framework Using Explainable Machine Learning</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </header>
+
+        <!-- Section 1 -->
+        <section style="animation-delay: 0.2s;">
+            <h2>1. Executive Synthesis & Comparative Matrix</h2>
+            
+            <p class="section-desc">
+                To establish a rigorous, contemporary foundation for the research project <strong>'National-Scale Dynamic Flash Flood Susceptibility Analysis in Nepal: A Spatially-Robust Framework Using Explainable Machine Learning'</strong>, three base papers published between 2023 and 2026 have been thoroughly analyzed. Each paper investigates data-driven flood susceptibility from distinct methodological and geographic vantage points, uncovering specific limitations and theoretical gaps that this coursework project directly resolves.
+            </p>
+            
+            <div class="table-container" style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Analytical Dimension</th>
+                            <th style="width: 20%;">Base Paper 1 (Maharjan 2024)</th>
+                            <th style="width: 20%;">Base Paper 2 (Neupane 2023)</th>
+                            <th style="width: 20%;">Base Paper 3 (Thapa 2026)</th>
+                            <th style="width: 25%;">My Project (Coursework 2026)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Publication Venue</strong></td>
+                            <td>Natural Hazards Research</td>
+                            <td>Journal of Flood Risk Management</td>
+                            <td>Discover Geoscience</td>
+                            <td class="col-my-project">MSc Machine Learning CW</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Study Domain</strong></td>
+                            <td>Mohana-Khutiya River (Localised river basin)</td>
+                            <td>Karnali River Basin (Regional watershed)</td>
+                            <td>Nepal (Multi-hazard settlement focus)</td>
+                            <td class="col-my-project">National-Scale Nepal (Integrating all ecological zones)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Source</strong></td>
+                            <td>Static DEM and land-use records</td>
+                            <td>Standard historic inventory</td>
+                            <td>Multi-hazard static inventory</td>
+                            <td class="col-my-project">Dynamic BIPAD Portal + Open-Meteo + GPM IMERG</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Predictive Target</strong></td>
+                            <td>Binary flood susceptibility mapping</td>
+                            <td>Binary flood susceptibility mapping</td>
+                            <td>Multi-hazard mapping</td>
+                            <td class="col-my-project">Dynamic Flash Flood Susceptibility (Time-series integration)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Validation Strategy</strong></td>
+                            <td class="col-gap">Standard random splits (Geographic Leakage)</td>
+                            <td class="col-gap">Standard random splits (Geographic Leakage)</td>
+                            <td class="col-gap">Standard random splits (Geographic Leakage)</td>
+                            <td class="col-my-project">Spatially-Robust Validation (GroupKFold by District)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Key Vulnerability</strong></td>
+                            <td class="col-gap">Confined strictly to one small river basin.</td>
+                            <td class="col-gap">Static variables cannot predict *when* floods trigger.</td>
+                            <td class="col-gap">Broad multi-hazard focus dilutes flash flood triggers.</td>
+                            <td class="col-my-project">Completely resolves geographic leakage and integrates real-time triggers.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Core Gap Fulfilled</strong></td>
+                            <td>Expands local analysis to a national framework.</td>
+                            <td>Integrates antecedent rainfall for dynamic mapping.</td>
+                            <td>Implements SHAP Explainable AI for actionable insights.</td>
+                            <td class="col-my-project">Provides a leak-free, explainable, and dynamic national map.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section style="animation-delay: 0.4s;">
+            
+        <section>
+            <h2>2.1 Experimental Paper Blueprint &mdash; Base Paper 1</h2>
+            
+            <div class="instructions">
+                <p><strong>BASE PAPER 1 PROFILE:</strong> Flash Flood Susceptibility Mapping in the Mohana-Khutiya River Basin, Nepal</p>
+                <p><strong>Full Citation:</strong> Maharjan et al., 2024. Natural Hazards Research.</p>
+                <p><strong>Paper Summary:</strong> Evaluates basic machine learning models for binary flood susceptibility mapping, confined strictly to a localized river basin using static DEM and land-use records.</p>
+                <p><strong>Key Research Gaps Fulfilled by my Project:</strong> 1) Expands isolated river basin analysis to a unified National-Scale framework; 2) Prevents geographic data leakage using GroupKFold.</p>
+                <br>
+                <p><strong>Step 1 &amp; 2: Length Benchmarking &amp; Field Conventions</strong></p>
+                <table style="margin-top: 10px; margin-bottom: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Comparable Paper Reference</th>
+                            <th>Length (excl. references)</th>
+                            <th>Methodological Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Base Paper 1: Maharjan et al. (2024, Natural Hazards Research)</td>
+                            <td>~4,200 words</td>
+                            <td>Binary ML models in local river basin</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Field Conventions &amp; Structural Blueprint Adjustments:</strong></p>
+                <ul>
+                    <li>Separate Literature Review Section? <strong>[YES]</strong> Included as Section II.</li>
+                    <li>Results and Discussion Structured as? <strong>[SEPARATE]</strong> Section IV presents Experimental Results, Section V provides Discussion &amp; Operational Implications.</li>
+                    <li>Discussion and Conclusion Structured as? <strong>[SEPARATE]</strong> Section V provides Discussion, Section VI delivers Conclusions &amp; Policy Recommendations.</li>
+                    <li>Target Word Count Benchmark: <strong>6,000 words</strong> (aligned with Module Specification).</li>
+                </ul>
+                <br>
+                <p><strong>Step 3: Completed Planning Blueprint Table</strong></p>
+            </div>
+            <br>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Section &amp; Range</th>
+                            <th style="width: 15%;">Element</th>
+                            <th style="width: 25%;">Purpose</th>
+                            <th style="width: 10%;">In Field?</th>
+                            <th style="width: 35%;">My Notes, Ideas & Research Gap Fulfilled</th>
+                        </tr>
+                    </thead>
+                                        <tbody>
+                        <!-- Introduction (6 rows) -->
+                        <tr>
+                            <td rowspan="6" style="font-weight: bold;">Introduction<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Importance of topic</td>
+                            <td>Introduce topic &amp; outline why studied</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Flash floods devastate Nepal (e.g., 2026 Bhotekoshi-Trishuli). Traditional reactive management is failing; proactive AI prediction is required.</td>
+                        </tr>
+                        <tr>
+                            <td>Brief literature review</td>
+                            <td>Situate study within the context</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Previous models focus on static variables (DEM, LULC) and are confined to isolated river basins.</td>
+                        </tr>
+                        <tr>
+                            <td>Research gap</td>
+                            <td>Provide justification for study</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-gap">RESEARCH GAP IN BASE PAPER 1: Maharjan et al. confined their analysis strictly to the Mohana-Khutiya River basin, making the model incapable of generalizing to a national-scale framework.</td>
+                        </tr>
+                        <tr>
+                            <td>Research aim</td>
+                            <td>Present what the study was about</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">To build a national-scale, dynamic susceptibility map for Nepal using robust spatial validation (GroupKFold) and explainable AI (SHAP).</td>
+                        </tr>
+                        <tr>
+                            <td>Main contributions</td>
+                            <td>Highlight novel insights</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Integration of Open-Meteo time-series weather data with historical BIPAD records to create a dynamic vulnerability model.</td>
+                        </tr>
+                        <tr>
+                            <td>Structure of paper</td>
+                            <td>Organization of the paper</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Section 2: Lit Review, Section 3: Methodology, Section 4: Results, Section 5: Discussion.</td>
+                        </tr>
+                        <!-- Lit Review (3 rows) -->
+                        <tr>
+                            <td rowspan="3" style="font-weight: bold;">Literature Review<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1000 &ndash; 1500 words)</span></td>
+                            <td>Definitions of concepts</td>
+                            <td>Definitions of contested terms</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Defining 'Flash Flood Susceptibility' and 'Geographic Data Leakage' in the context of spatial machine learning.</td>
+                        </tr>
+                        <tr>
+                            <td>Key themes</td>
+                            <td>Outline literature on main topics</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Spatial modeling techniques, hazard interaction, and explainability (XAI) in hydrology.</td>
+                        </tr>
+                        <tr>
+                            <td>Critical analysis</td>
+                            <td>Analyze previous studies critically</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-gap">Base papers rely on random K-Fold validation, artificially inflating accuracies by bleeding adjacent pixels into the test set.</td>
+                        </tr>
+                        <!-- Theoretical Framework (1 row) -->
+                        <tr>
+                            <td style="font-weight: bold;">Theoretical Framework<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(200 &ndash; 500 words)</span></td>
+                            <td>Theories utilized</td>
+                            <td>Theories drawn upon in study</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Hydro-geomorphological principles of rainfall-runoff interaction, extreme event thresholding, and risk decision theory.</td>
+                        </tr>
+                        <!-- Methodology (5 rows) -->
+                        <tr>
+                            <td rowspan="5" style="font-weight: bold;">Methodology<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1000 &ndash; 1500 words)</span></td>
+                            <td>Definition/justification</td>
+                            <td>Outline chosen methodology</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Justifying binary classification over continuous regression to specifically target extreme threshold disaster events.</td>
+                        </tr>
+                        <tr>
+                            <td>Background info</td>
+                            <td>Present the context (geography)</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>National extent of Nepal, capturing topographical variations from the Terai plains to the high Himalayas.</td>
+                        </tr>
+                        <tr>
+                            <td>Sample &amp; techniques</td>
+                            <td>Who/what studied and how</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Integrating historically verified disaster records from the BIPAD Portal. Synthesizing non-flood data via spatial buffering.</td>
+                        </tr>
+                        <tr>
+                            <td>Research tools</td>
+                            <td>Specify execution</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Python Scikit-learn pipeline, Google Earth Engine for raster processing; engineering antecedent rainfall features.</td>
+                        </tr>
+                        <tr>
+                            <td>Data analysis</td>
+                            <td>Present analysis &amp; justification</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Logistic Regression, Random Forest, SVM, XGBoost evaluated via GroupKFold (district-level splitting) to prevent leakage.</td>
+                        </tr>
+                        <!-- Results (2 rows) -->
+                        <tr>
+                            <td rowspan="2" style="font-weight: bold;">Results<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1500 &ndash; 3000 words)</span></td>
+                            <td>Presentation of results</td>
+                            <td>Present results obtained</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Model comparisons emphasizing Precision, Recall, F1-Score, ROC-AUC, and PR-AUC on geographically unseen districts.</td>
+                        </tr>
+                        <tr>
+                            <td>Clear use of tables/figs</td>
+                            <td>Provide visual representation</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>SHAP Summary Plots, SHAP Dependence Plots for antecedent rainfall/slope interactions, and National Susceptibility Maps.</td>
+                        </tr>
+                        <!-- Discussion (4 rows) -->
+                        <tr>
+                            <td rowspan="4" style="font-weight: bold;">Discussion<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Restatement of result</td>
+                            <td>Remind reader of the result</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>GroupKFold spatial validation successfully evaluates the model's true capability to generalize to unmapped districts.</td>
+                        </tr>
+                        <tr>
+                            <td>Comparison with literature</td>
+                            <td>Situate result within literature</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>While local studies (e.g. Thapa 2026) show 95%+ accuracy using static maps on random splits, our framework exposes the real leakage gap.</td>
+                        </tr>
+                        <tr>
+                            <td>Explanation of findings</td>
+                            <td>Explain findings and differences</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Dynamic factors (like antecedent rainfall) are proven to be vastly superior to static DEMs for triggering predictions.</td>
+                        </tr>
+                        <tr>
+                            <td>Interpretation of findings</td>
+                            <td>Show what findings mean</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Highlighting exactly which dynamic features (e.g., 3-day accumulated rainfall + soil saturation) drive flash floods.</td>
+                        </tr>
+                        <!-- Conclusion (5 rows) -->
+                        <tr>
+                            <td rowspan="5" style="font-weight: bold;">Conclusion<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Restatement of aim</td>
+                            <td>Remind reader of aim/topic</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Re-establishing the successful development of a national, explainable early-warning framework for Nepal.</td>
+                        </tr>
+                        <tr>
+                            <td>Recap of findings</td>
+                            <td>Restate main results</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Delivered a unified national framework; successfully integrated BIPAD data; proved that SHAP unlocks "black-box" modeling.</td>
+                        </tr>
+                        <tr>
+                            <td>Practical implications</td>
+                            <td>Show impact for stakeholders</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Provides the NDRRMA with a transparent, actionable early-warning decision tool.</td>
+                        </tr>
+                        <tr>
+                            <td>Limitations</td>
+                            <td>Acknowledge limitations</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Dependence on the spatial resolution of satellite-derived rainfall (IMERG) rather than localized ground gauge networks.</td>
+                        </tr>
+                        <tr>
+                            <td>Future research</td>
+                            <td>Suggest future directions</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Integrating deep learning (e.g., Spatial-Temporal GNNs) with real-time IoT river gauge data.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>2.2 Experimental Paper Blueprint &mdash; Base Paper 2</h2>
+            
+            <div class="instructions">
+                <p><strong>BASE PAPER 2 PROFILE:</strong> Flood Susceptibility Mapping in the Karnali River Basin using Machine Learning</p>
+                <p><strong>Full Citation:</strong> Neupane et al., 2023. Journal of Flood Risk Management.</p>
+                <p><strong>Paper Summary:</strong> Uses standard historical inventory and static factors (elevation, soil type) to build binary flood susceptibility maps over a regional watershed.</p>
+                <p><strong>Key Research Gaps Fulfilled by my Project:</strong> 1) Replaces static environmental mapping with dynamic modeling using Open-Meteo antecedent rainfall; 2) Introduces time-series hydro-meteorological triggers.</p>
+                <br>
+                <p><strong>Step 1 &amp; 2: Length Benchmarking &amp; Field Conventions</strong></p>
+                <table style="margin-top: 10px; margin-bottom: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Comparable Paper Reference</th>
+                            <th>Length (excl. references)</th>
+                            <th>Methodological Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Base Paper 2: Neupane et al. (2023, Journal of Flood Risk Management)</td>
+                            <td>~5,100 words</td>
+                            <td>Static historical inventory modeling</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Field Conventions &amp; Structural Blueprint Adjustments:</strong></p>
+                <ul>
+                    <li>Separate Literature Review Section? <strong>[YES]</strong> Included as Section II.</li>
+                    <li>Results and Discussion Structured as? <strong>[SEPARATE]</strong> Section IV presents Experimental Results, Section V provides Discussion &amp; Operational Implications.</li>
+                    <li>Discussion and Conclusion Structured as? <strong>[SEPARATE]</strong> Section V provides Discussion, Section VI delivers Conclusions &amp; Policy Recommendations.</li>
+                    <li>Target Word Count Benchmark: <strong>6,000 words</strong> (aligned with Module Specification).</li>
+                </ul>
+                <br>
+                <p><strong>Step 3: Completed Planning Blueprint Table</strong></p>
+            </div>
+            <br>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Section &amp; Range</th>
+                            <th style="width: 15%;">Element</th>
+                            <th style="width: 25%;">Purpose</th>
+                            <th style="width: 10%;">In Field?</th>
+                            <th style="width: 35%;">My Notes, Ideas & Research Gap Fulfilled</th>
+                        </tr>
+                    </thead>
+                                        <tbody>
+                        <!-- Introduction (6 rows) -->
+                        <tr>
+                            <td rowspan="6" style="font-weight: bold;">Introduction<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Importance of topic</td>
+                            <td>Introduce topic &amp; outline why studied</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Flash floods devastate Nepal (e.g., 2026 Bhotekoshi-Trishuli). Traditional reactive management is failing; proactive AI prediction is required.</td>
+                        </tr>
+                        <tr>
+                            <td>Brief literature review</td>
+                            <td>Situate study within the context</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Previous models focus on static variables (DEM, LULC) and are confined to isolated river basins.</td>
+                        </tr>
+                        <tr>
+                            <td>Research gap</td>
+                            <td>Provide justification for study</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-gap">RESEARCH GAP IN BASE PAPER 2: Neupane et al. relied exclusively on static environmental variables (like DEM and LULC) which cannot predict *when* flash floods will trigger dynamically based on antecedent rainfall.</td>
+                        </tr>
+                        <tr>
+                            <td>Research aim</td>
+                            <td>Present what the study was about</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">To build a national-scale, dynamic susceptibility map for Nepal using robust spatial validation (GroupKFold) and explainable AI (SHAP).</td>
+                        </tr>
+                        <tr>
+                            <td>Main contributions</td>
+                            <td>Highlight novel insights</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Integration of Open-Meteo time-series weather data with historical BIPAD records to create a dynamic vulnerability model.</td>
+                        </tr>
+                        <tr>
+                            <td>Structure of paper</td>
+                            <td>Organization of the paper</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Section 2: Lit Review, Section 3: Methodology, Section 4: Results, Section 5: Discussion.</td>
+                        </tr>
+                        <!-- Lit Review (3 rows) -->
+                        <tr>
+                            <td rowspan="3" style="font-weight: bold;">Literature Review<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1000 &ndash; 1500 words)</span></td>
+                            <td>Definitions of concepts</td>
+                            <td>Definitions of contested terms</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Defining 'Flash Flood Susceptibility' and 'Geographic Data Leakage' in the context of spatial machine learning.</td>
+                        </tr>
+                        <tr>
+                            <td>Key themes</td>
+                            <td>Outline literature on main topics</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Spatial modeling techniques, hazard interaction, and explainability (XAI) in hydrology.</td>
+                        </tr>
+                        <tr>
+                            <td>Critical analysis</td>
+                            <td>Analyze previous studies critically</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-gap">Base papers rely on random K-Fold validation, artificially inflating accuracies by bleeding adjacent pixels into the test set.</td>
+                        </tr>
+                        <!-- Theoretical Framework (1 row) -->
+                        <tr>
+                            <td style="font-weight: bold;">Theoretical Framework<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(200 &ndash; 500 words)</span></td>
+                            <td>Theories utilized</td>
+                            <td>Theories drawn upon in study</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Hydro-geomorphological principles of rainfall-runoff interaction, extreme event thresholding, and risk decision theory.</td>
+                        </tr>
+                        <!-- Methodology (5 rows) -->
+                        <tr>
+                            <td rowspan="5" style="font-weight: bold;">Methodology<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1000 &ndash; 1500 words)</span></td>
+                            <td>Definition/justification</td>
+                            <td>Outline chosen methodology</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Justifying binary classification over continuous regression to specifically target extreme threshold disaster events.</td>
+                        </tr>
+                        <tr>
+                            <td>Background info</td>
+                            <td>Present the context (geography)</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>National extent of Nepal, capturing topographical variations from the Terai plains to the high Himalayas.</td>
+                        </tr>
+                        <tr>
+                            <td>Sample &amp; techniques</td>
+                            <td>Who/what studied and how</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Integrating historically verified disaster records from the BIPAD Portal. Synthesizing non-flood data via spatial buffering.</td>
+                        </tr>
+                        <tr>
+                            <td>Research tools</td>
+                            <td>Specify execution</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Python Scikit-learn pipeline, Google Earth Engine for raster processing; engineering antecedent rainfall features.</td>
+                        </tr>
+                        <tr>
+                            <td>Data analysis</td>
+                            <td>Present analysis &amp; justification</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Logistic Regression, Random Forest, SVM, XGBoost evaluated via GroupKFold (district-level splitting) to prevent leakage.</td>
+                        </tr>
+                        <!-- Results (2 rows) -->
+                        <tr>
+                            <td rowspan="2" style="font-weight: bold;">Results<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1500 &ndash; 3000 words)</span></td>
+                            <td>Presentation of results</td>
+                            <td>Present results obtained</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Model comparisons emphasizing Precision, Recall, F1-Score, ROC-AUC, and PR-AUC on geographically unseen districts.</td>
+                        </tr>
+                        <tr>
+                            <td>Clear use of tables/figs</td>
+                            <td>Provide visual representation</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>SHAP Summary Plots, SHAP Dependence Plots for antecedent rainfall/slope interactions, and National Susceptibility Maps.</td>
+                        </tr>
+                        <!-- Discussion (4 rows) -->
+                        <tr>
+                            <td rowspan="4" style="font-weight: bold;">Discussion<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Restatement of result</td>
+                            <td>Remind reader of the result</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>GroupKFold spatial validation successfully evaluates the model's true capability to generalize to unmapped districts.</td>
+                        </tr>
+                        <tr>
+                            <td>Comparison with literature</td>
+                            <td>Situate result within literature</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>While local studies (e.g. Thapa 2026) show 95%+ accuracy using static maps on random splits, our framework exposes the real leakage gap.</td>
+                        </tr>
+                        <tr>
+                            <td>Explanation of findings</td>
+                            <td>Explain findings and differences</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Dynamic factors (like antecedent rainfall) are proven to be vastly superior to static DEMs for triggering predictions.</td>
+                        </tr>
+                        <tr>
+                            <td>Interpretation of findings</td>
+                            <td>Show what findings mean</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Highlighting exactly which dynamic features (e.g., 3-day accumulated rainfall + soil saturation) drive flash floods.</td>
+                        </tr>
+                        <!-- Conclusion (5 rows) -->
+                        <tr>
+                            <td rowspan="5" style="font-weight: bold;">Conclusion<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Restatement of aim</td>
+                            <td>Remind reader of aim/topic</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Re-establishing the successful development of a national, explainable early-warning framework for Nepal.</td>
+                        </tr>
+                        <tr>
+                            <td>Recap of findings</td>
+                            <td>Restate main results</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Delivered a unified national framework; successfully integrated BIPAD data; proved that SHAP unlocks "black-box" modeling.</td>
+                        </tr>
+                        <tr>
+                            <td>Practical implications</td>
+                            <td>Show impact for stakeholders</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Provides the NDRRMA with a transparent, actionable early-warning decision tool.</td>
+                        </tr>
+                        <tr>
+                            <td>Limitations</td>
+                            <td>Acknowledge limitations</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Dependence on the spatial resolution of satellite-derived rainfall (IMERG) rather than localized ground gauge networks.</td>
+                        </tr>
+                        <tr>
+                            <td>Future research</td>
+                            <td>Suggest future directions</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Integrating deep learning (e.g., Spatial-Temporal GNNs) with real-time IoT river gauge data.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>2.3 Experimental Paper Blueprint &mdash; Base Paper 3</h2>
+            
+            <div class="instructions">
+                <p><strong>BASE PAPER 3 PROFILE:</strong> Multi-hazard Susceptibility Mapping across Nepal</p>
+                <p><strong>Full Citation:</strong> Thapa et al., 2026. Discover Geoscience.</p>
+                <p><strong>Paper Summary:</strong> Integrates GIS and machine learning to map broad multi-hazard (flood and landslide) zones across Nepal using standard random data splits.</p>
+                <p><strong>Key Research Gaps Fulfilled by my Project:</strong> 1) Replaces highly-flawed random K-Fold with district-level Spatially-Robust Validation (GroupKFold); 2) Implements SHAP Explainable AI for actionable decision-making instead of black-box outputs.</p>
+                <br>
+                <p><strong>Step 1 &amp; 2: Length Benchmarking &amp; Field Conventions</strong></p>
+                <table style="margin-top: 10px; margin-bottom: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Comparable Paper Reference</th>
+                            <th>Length (excl. references)</th>
+                            <th>Methodological Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Base Paper 3: Thapa et al. (2026, Discover Geoscience)</td>
+                            <td>~6,500 words</td>
+                            <td>Multi-hazard GIS machine learning mapping</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Field Conventions &amp; Structural Blueprint Adjustments:</strong></p>
+                <ul>
+                    <li>Separate Literature Review Section? <strong>[YES]</strong> Included as Section II.</li>
+                    <li>Results and Discussion Structured as? <strong>[SEPARATE]</strong> Section IV presents Experimental Results, Section V provides Discussion &amp; Operational Implications.</li>
+                    <li>Discussion and Conclusion Structured as? <strong>[SEPARATE]</strong> Section V provides Discussion, Section VI delivers Conclusions &amp; Policy Recommendations.</li>
+                    <li>Target Word Count Benchmark: <strong>6,000 words</strong> (aligned with Module Specification).</li>
+                </ul>
+                <br>
+                <p><strong>Step 3: Completed Planning Blueprint Table</strong></p>
+            </div>
+            <br>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Section &amp; Range</th>
+                            <th style="width: 15%;">Element</th>
+                            <th style="width: 25%;">Purpose</th>
+                            <th style="width: 10%;">In Field?</th>
+                            <th style="width: 35%;">My Notes, Ideas & Research Gap Fulfilled</th>
+                        </tr>
+                    </thead>
+                                        <tbody>
+                        <!-- Introduction (6 rows) -->
+                        <tr>
+                            <td rowspan="6" style="font-weight: bold;">Introduction<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Importance of topic</td>
+                            <td>Introduce topic &amp; outline why studied</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Flash floods devastate Nepal (e.g., 2026 Bhotekoshi-Trishuli). Traditional reactive management is failing; proactive AI prediction is required.</td>
+                        </tr>
+                        <tr>
+                            <td>Brief literature review</td>
+                            <td>Situate study within the context</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Previous models focus on static variables (DEM, LULC) and are confined to isolated river basins.</td>
+                        </tr>
+                        <tr>
+                            <td>Research gap</td>
+                            <td>Provide justification for study</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-gap">RESEARCH GAP IN BASE PAPER 3: Thapa et al. utilized standard random train-test splitting which suffers from severe geographic data leakage, and they provided no true operational explainability (SHAP).</td>
+                        </tr>
+                        <tr>
+                            <td>Research aim</td>
+                            <td>Present what the study was about</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">To build a national-scale, dynamic susceptibility map for Nepal using robust spatial validation (GroupKFold) and explainable AI (SHAP).</td>
+                        </tr>
+                        <tr>
+                            <td>Main contributions</td>
+                            <td>Highlight novel insights</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Integration of Open-Meteo time-series weather data with historical BIPAD records to create a dynamic vulnerability model.</td>
+                        </tr>
+                        <tr>
+                            <td>Structure of paper</td>
+                            <td>Organization of the paper</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Section 2: Lit Review, Section 3: Methodology, Section 4: Results, Section 5: Discussion.</td>
+                        </tr>
+                        <!-- Lit Review (3 rows) -->
+                        <tr>
+                            <td rowspan="3" style="font-weight: bold;">Literature Review<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1000 &ndash; 1500 words)</span></td>
+                            <td>Definitions of concepts</td>
+                            <td>Definitions of contested terms</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Defining 'Flash Flood Susceptibility' and 'Geographic Data Leakage' in the context of spatial machine learning.</td>
+                        </tr>
+                        <tr>
+                            <td>Key themes</td>
+                            <td>Outline literature on main topics</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Spatial modeling techniques, hazard interaction, and explainability (XAI) in hydrology.</td>
+                        </tr>
+                        <tr>
+                            <td>Critical analysis</td>
+                            <td>Analyze previous studies critically</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-gap">Base papers rely on random K-Fold validation, artificially inflating accuracies by bleeding adjacent pixels into the test set.</td>
+                        </tr>
+                        <!-- Theoretical Framework (1 row) -->
+                        <tr>
+                            <td style="font-weight: bold;">Theoretical Framework<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(200 &ndash; 500 words)</span></td>
+                            <td>Theories utilized</td>
+                            <td>Theories drawn upon in study</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Hydro-geomorphological principles of rainfall-runoff interaction, extreme event thresholding, and risk decision theory.</td>
+                        </tr>
+                        <!-- Methodology (5 rows) -->
+                        <tr>
+                            <td rowspan="5" style="font-weight: bold;">Methodology<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1000 &ndash; 1500 words)</span></td>
+                            <td>Definition/justification</td>
+                            <td>Outline chosen methodology</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Justifying binary classification over continuous regression to specifically target extreme threshold disaster events.</td>
+                        </tr>
+                        <tr>
+                            <td>Background info</td>
+                            <td>Present the context (geography)</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>National extent of Nepal, capturing topographical variations from the Terai plains to the high Himalayas.</td>
+                        </tr>
+                        <tr>
+                            <td>Sample &amp; techniques</td>
+                            <td>Who/what studied and how</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Integrating historically verified disaster records from the BIPAD Portal. Synthesizing non-flood data via spatial buffering.</td>
+                        </tr>
+                        <tr>
+                            <td>Research tools</td>
+                            <td>Specify execution</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Python Scikit-learn pipeline, Google Earth Engine for raster processing; engineering antecedent rainfall features.</td>
+                        </tr>
+                        <tr>
+                            <td>Data analysis</td>
+                            <td>Present analysis &amp; justification</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Logistic Regression, Random Forest, SVM, XGBoost evaluated via GroupKFold (district-level splitting) to prevent leakage.</td>
+                        </tr>
+                        <!-- Results (2 rows) -->
+                        <tr>
+                            <td rowspan="2" style="font-weight: bold;">Results<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(1500 &ndash; 3000 words)</span></td>
+                            <td>Presentation of results</td>
+                            <td>Present results obtained</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Model comparisons emphasizing Precision, Recall, F1-Score, ROC-AUC, and PR-AUC on geographically unseen districts.</td>
+                        </tr>
+                        <tr>
+                            <td>Clear use of tables/figs</td>
+                            <td>Provide visual representation</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>SHAP Summary Plots, SHAP Dependence Plots for antecedent rainfall/slope interactions, and National Susceptibility Maps.</td>
+                        </tr>
+                        <!-- Discussion (4 rows) -->
+                        <tr>
+                            <td rowspan="4" style="font-weight: bold;">Discussion<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Restatement of result</td>
+                            <td>Remind reader of the result</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>GroupKFold spatial validation successfully evaluates the model's true capability to generalize to unmapped districts.</td>
+                        </tr>
+                        <tr>
+                            <td>Comparison with literature</td>
+                            <td>Situate result within literature</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>While local studies (e.g. Thapa 2026) show 95%+ accuracy using static maps on random splits, our framework exposes the real leakage gap.</td>
+                        </tr>
+                        <tr>
+                            <td>Explanation of findings</td>
+                            <td>Explain findings and differences</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Dynamic factors (like antecedent rainfall) are proven to be vastly superior to static DEMs for triggering predictions.</td>
+                        </tr>
+                        <tr>
+                            <td>Interpretation of findings</td>
+                            <td>Show what findings mean</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Highlighting exactly which dynamic features (e.g., 3-day accumulated rainfall + soil saturation) drive flash floods.</td>
+                        </tr>
+                        <!-- Conclusion (5 rows) -->
+                        <tr>
+                            <td rowspan="5" style="font-weight: bold;">Conclusion<br><span style="font-weight: normal; font-size: 9pt; color: #555555;">(500 &ndash; 1000 words)</span></td>
+                            <td>Restatement of aim</td>
+                            <td>Remind reader of aim/topic</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Re-establishing the successful development of a national, explainable early-warning framework for Nepal.</td>
+                        </tr>
+                        <tr>
+                            <td>Recap of findings</td>
+                            <td>Restate main results</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Delivered a unified national framework; successfully integrated BIPAD data; proved that SHAP unlocks "black-box" modeling.</td>
+                        </tr>
+                        <tr>
+                            <td>Practical implications</td>
+                            <td>Show impact for stakeholders</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td class="col-my-project">Provides the NDRRMA with a transparent, actionable early-warning decision tool.</td>
+                        </tr>
+                        <tr>
+                            <td>Limitations</td>
+                            <td>Acknowledge limitations</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Dependence on the spatial resolution of satellite-derived rainfall (IMERG) rather than localized ground gauge networks.</td>
+                        </tr>
+                        <tr>
+                            <td>Future research</td>
+                            <td>Suggest future directions</td>
+                            <td><div class="checkbox-group"><label class="checkbox-container"><input type="checkbox" checked><span class="checkmark"></span> Yes</label><label class="checkbox-container no-checkbox"><input type="checkbox"><span class="checkmark"></span> No</label></div></td>
+                            <td>Integrating deep learning (e.g., Spatial-Temporal GNNs) with real-time IoT river gauge data.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <!-- Section 3 -->
+        <section style="animation-delay: 0.6s;">
+            <h2>3. Master Consolidated Research Gap Contribution Matrix</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Key Research Dimension</th>
+                            <th style="width: 25%;">State of the Art in Base Papers</th>
+                            <th style="width: 25%;">Critical Unresolved Research Gap</th>
+                            <th style="width: 30%;">How My Project Fulfills the Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: bold;">Geographic Scope & Scalability</td>
+                            <td>Neupane et al. models Karnali river basin; Maharjan et al. limits to Mohana-Khutiya.</td>
+                            <td class="col-gap">Isolated river basin studies fail to capture macro-level hydrometeorological patterns required for a unified, national-level strategy.</td>
+                            <td class="col-my-project">Expands scope to a <strong>National-Scale</strong> analysis covering the entire country, integrating diverse ecological zones.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Spatial Validation Strategy (Leakage Paradox)</td>
+                            <td>Thapa et al. and Neupane et al. rely on standard random data splitting (e.g., 70/30).</td>
+                            <td class="col-gap">Standard splits suffer from <strong>geographic data leakage</strong> (adjacent correlated pixels bleed into the test set), inflating accuracy.</td>
+                            <td class="col-my-project">Implements <strong>Spatially-Robust Validation (GroupKFold)</strong> by districts to strictly separate regions during training, revealing true generalizability.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Predictor Dynamism</td>
+                            <td>Base papers rely on static environmental factors (Elevation, LULC) or basic averages.</td>
+                            <td class="col-gap">Static maps predict <em>where</em> floods occur theoretically, but fail to predict <em>when</em> they trigger based on changing weather.</td>
+                            <td class="col-my-project">Integrates dynamic triggers, specifically <strong>antecedent rainfall accumulation</strong> and real-time soil moisture alongside BIPAD records.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Model Interpretability (XAI)</td>
+                            <td>Base papers output standard nominal accuracy and basic tree-based "Feature Importance".</td>
+                            <td class="col-gap">Feature importance shows <em>which</em> variables matter but fails to explain <em>how</em> they interact, keeping the model a "black box".</td>
+                            <td class="col-my-project">Employs advanced <strong>Explainable AI (SHAP)</strong> for dependence plots, proving exactly how variables interact to trigger floods.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section style="animation-delay: 0.8s; margin-bottom: 60px;">
+            <h2>4. Usage Instructions</h2>
+            <div class="instructions">
+                <ul>
+                    <li><strong>Dynamic Highlighting:</strong> Hover over any row to highlight it. Green columns represent your specific project contributions.</li>
+                    <li><strong>Incorporating into Coursework:</strong> Use the text under 'Critical Unresolved Research Gap' to directly write Section II (Literature Review) of your final IEEE paper.</li>
+                    <li><strong>Defending Your Methodology:</strong> If challenged on why you used GroupKFold, point directly to the <em>Spatial Validation Strategy (Leakage Paradox)</em> dimension.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section>
+            <h2>4. Instructions for Customizing and Modifying This Document</h2>
+            <p class="section-desc" style="margin-bottom: 15px;">This HTML document has been designed as an interactive, fully editable planning template. You can directly edit, expand, or adjust any section as your coursework evolves:</p>
+            
+            <ol style="margin-left: 20px; text-align: justify; line-height: 1.6;">
+                <li style="margin-bottom: 10px;"><strong>Modifying Notes in the Tables:</strong> Simply click inside any cell under the 'My Notes, Ideas &amp; Research Gap Fulfilled' column (using the Enable Editing button) to add your own personal observations, tutor feedback, or specific phrasing.</li>
+                <li style="margin-bottom: 10px;"><strong>Adjusting Target Word Counts:</strong> If your tutor requests a shorter or longer report (e.g. 5,000 words vs 6,000 words), modify the suggested word count ranges in the Section &amp; Range column.</li>
+                <li style="margin-bottom: 10px;"><strong>Incorporating into Your Coursework Report:</strong> The notes in these blueprints correspond directly to the section headings of your final IEEE paper (<code>210178_ML_Proposal_Rohit_Jha.tex</code>). Use the text under 'Research Gap Fulfilled' to populate Section II (Literature Review).</li>
+                <li><strong>Citing the Base Papers:</strong> All three base papers are available as PDFs in your project directory. You can cite them using the complete academic citations provided in this document.</li>
+            </ol>
+        </section>
+    </div>
+
+    <script>
+        function toggleEdit() {
+            const isEditable = document.body.isContentEditable;
+            
+            if (!isEditable) {
+                document.body.contentEditable = "true";
+                document.querySelector('.action-buttons').contentEditable = "false";
+                
+                const btn = document.getElementById('editBtn');
+                btn.innerHTML = "✅ Finish Editing";
+                btn.style.backgroundColor = "#fef2f2";
+                btn.style.borderColor = "#dc2626";
+                btn.style.color = "#dc2626";
+            } else {
+                document.body.contentEditable = "false";
+                const btn = document.getElementById('editBtn');
+                btn.innerHTML = "✏️ Enable Editing";
+                btn.style.backgroundColor = "#ffffff";
+                btn.style.borderColor = "#1e3a8a";
+                btn.style.color = "#1e3a8a";
+            }
+        }
+
+        function saveHtml() {
+            // Ensure editing is turned off so it saves cleanly
+            if (document.body.isContentEditable) {
+                toggleEdit();
+            }
+            
+            // Generate the HTML blob
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            
+            // Trigger download
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'Rohit_Jha_Blueprint_Edited.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(a.href);
+        }
+    </script>
+</body>
+</html>
